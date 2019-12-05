@@ -68,52 +68,50 @@ DEALINGS IN THE SOFTWARE.
 #define ID_BTN14         (DEVICE_ID_IO_P0 + 28)
 #define ID_BTN15         (DEVICE_ID_IO_P0 + 29)
 
-namespace codal
-{
+namespace codal {
+/**
+ * Represents a collection of all I/O pins exposed by the device.
+ */
+class HeTaoIO {
+public:
+
+    ZPin mute;
+    ZPin ttl_tx;
+    ZPin ttl_rx;
+    ZPin lcd_rst;
+    ZPin scl;
+    ZPin sda;
+    ZPin led;
+    ZPin pwr_on;
+    ZPin pwr_key;
+    ZPin plugin;
+    ZPin btn0;
+    ZPin btn1;
+    ZPin btn2;
+    ZPin btn3;
+    ZPin btn4;
+    ZPin btn5;
+    ZPin btn6;
+    ZPin btn7;
+    ZPin btn8;
+    ZPin btn9;
+    ZPin btn10;
+    ZPin btn11;
+    ZPin btn12;
+    ZPin btn13;
+    ZPin btn14;
+    ZPin btn15;
+
+    ZPin buttonUp;
+    ZPin buttonDown;
+    ZPin buttonLeft;
+    ZPin buttonRight;
+
     /**
-     * Represents a collection of all I/O pins exposed by the device.
+     * Constructor.
      */
-    class HeTaoIO
-    {
-        public:
-
-            ZPin mute;
-            ZPin ttl_tx;
-            ZPin ttl_rx;
-            ZPin lcd_rst;
-            ZPin scl;
-            ZPin sda;
-            ZPin led;
-            ZPin pwr_on;
-            ZPin pwr_key;
-            ZPin plugin;
-            ZPin btn0;
-            ZPin btn1;
-            ZPin btn2;
-            ZPin btn3;
-            ZPin btn4;
-            ZPin btn5;
-            ZPin btn6;
-            ZPin btn7;
-            ZPin btn8;
-            ZPin btn9;
-            ZPin btn10;
-            ZPin btn11;
-            ZPin btn12;
-            ZPin btn13;
-            ZPin btn14;
-            ZPin btn15;
-
-            ZPin        buttonUp;
-            ZPin        buttonDown;
-            ZPin        buttonLeft;
-            ZPin        buttonRight;
-
-            /**
-             * Constructor.
-             */
-            HeTaoIO();
-    };
+    HeTaoIO();
+};
 }
 
 #endif

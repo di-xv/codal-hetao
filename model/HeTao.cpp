@@ -37,28 +37,17 @@ static HeTao *device_instance = NULL;
   * that represent various device drivers used to control aspects of the micro:bit.
   */
 HeTao::HeTao() :
-    tim4(TIM4, TIM4_IRQn),
-//    tim5(TIM5, TIM5_IRQn),
-    timer(tim4),
-    messageBus(),
-    io(),
-//    spi(io.mosi, io.miso, io.sck),
-//    synth0(SYNTHESIZER_SAMPLE_RATE, true),
-//    synth1(SYNTHESIZER_SAMPLE_RATE, true),
-//    pwm(io.snd, mixer),
-//    sws(io.tx),
-//    bus(sws, tim2, &io.ledRed),
-//    jacdac(bus),
-    buttonUp(io.buttonUp, DEVICE_ID_BUTTON_UP, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
-    buttonDown(io.buttonDown, DEVICE_ID_BUTTON_DOWN, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
-    buttonLeft(io.buttonLeft, DEVICE_ID_BUTTON_LEFT, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
-    buttonRight(io.buttonRight, DEVICE_ID_BUTTON_RIGHT, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up)
-//    serialOut(io.d1)
-{
+        tim4(TIM4, TIM4_IRQn),
+        timer(tim4),
+        messageBus(),
+        io(),
+        buttonUp(io.buttonUp, DEVICE_ID_BUTTON_UP, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
+        buttonDown(io.buttonDown, DEVICE_ID_BUTTON_DOWN, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
+        buttonLeft(io.buttonLeft, DEVICE_ID_BUTTON_LEFT, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
+        buttonRight(io.buttonRight, DEVICE_ID_BUTTON_RIGHT, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up) {
     // Clear our status
     status = 0;
 
-//    io.buzzer.getDigitalValue();
     io.pwr_on.setDigitalValue(1);
 
     device_instance = this;
@@ -79,8 +68,7 @@ HeTao::HeTao() :
   * @note This method must be called before user code utilises any functionality
   *       contained within the GenuinoZero class.
   */
-int HeTao::init()
-{
+int HeTao::init() {
     if (status & DEVICE_INITIALIZED)
         return DEVICE_NOT_SUPPORTED;
 
@@ -89,33 +77,13 @@ int HeTao::init()
     // Bring up fiber scheduler.
     scheduler_init(messageBus);
 
-    for(int i = 0; i < DEVICE_COMPONENT_COUNT; i++)
-    {
-        if(CodalComponent::components[i])
+    for (int i = 0; i < DEVICE_COMPONENT_COUNT; i++) {
+        if (CodalComponent::components[i])
             CodalComponent::components[i]->init();
     }
 
-    // Seed our random number generator
-    //seedRandom();
-
     codal_dmesg_set_flush_fn(hetao_dmesg_flush);
     status |= DEVICE_COMPONENT_STATUS_IDLE_TICK;
-
-//    synth0.setSampleRate(pwm.getSampleRate());
-//    synth0.setTone(Synthesizer::SineTone);
-//
-//    synth1.setSampleRate(pwm.getSampleRate());
-//    synth1.setTone(Synthesizer::SineTone);
-//
-//    mixer.addChannel(synth0.output);
-//    mixer.addChannel(synth1.output);
-
-    //synth.setVolume(400);
-    //synth.setFrequency(400);
-
-    //io.snd1.setAnalogPeriodUs(1000000/440);
-    //io.snd1.setAnalogValue(500);
-
 
     return DEVICE_OK;
 }
@@ -125,11 +93,9 @@ int HeTao::init()
   * We use this for any low priority, backgrounf housekeeping.
   *
   */
-void HeTao::idleCallback()
-{
+void HeTao::idleCallback() {
     codal_dmesg_flush();
 }
 
-void hetao_dmesg_flush()
-{
+void hetao_dmesg_flush() {
 }

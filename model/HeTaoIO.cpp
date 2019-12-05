@@ -71,6 +71,5 @@ HeTaoIO::HeTaoIO() :
         buttonUp(ID_BTN1, PC_1, PIN_CAPABILITY_DIGITAL),
         buttonLeft(ID_BTN8, PC_8, PIN_CAPABILITY_DIGITAL),
         buttonDown(ID_BTN9, PC_9, PIN_CAPABILITY_DIGITAL),
-        buttonRight(ID_BTN10, PC_10, PIN_CAPABILITY_DIGITAL)
-{
+        buttonRight(ID_BTN10, PC_10, PIN_CAPABILITY_DIGITAL) {
 }

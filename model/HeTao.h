@@ -62,80 +62,28 @@ DEALINGS IN THE SOFTWARE.
  * Represents the device as a whole, and includes member variables that represent various device drivers
  * used to control aspects of the micro:bit.
  */
-namespace codal
-{
-    class HeTao : public CodalComponent
-    {
-        public:
-            STMLowLevelTimer            tim4;
-//            STMLowLevelTimer            tim5;
-            Timer                       timer;
-            MessageBus                  messageBus;
-            HeTaoIO                  io;
-//            ZSPI                        spi;
-            //codal::_mbed::I2C           i2c;
+namespace codal {
+class HeTao : public CodalComponent {
+public:
+    STMLowLevelTimer tim4;
+    Timer timer;
+    MessageBus messageBus;
+    HeTaoIO io;
 
-//            Synthesizer synth0;
-//            Synthesizer synth1;
-//            Mixer mixer;
-//            ZPWM pwm;
-//
-//            ZSingleWireSerial sws;
-//            JDPhysicalLayer bus;
-//            JACDAC jacdac;
-        // JackRouter jackRouter;
+    Button buttonUp;
+    Button buttonDown;
+    Button buttonLeft;
+    Button buttonRight;
 
-            Button buttonUp;
-            Button buttonDown;
-            Button buttonLeft;
-            Button buttonRight;
+    /**
+     * Constructor.
+     */
+    HeTao();
 
-//            ZSingleWireSerial serialOut;
-
-            /**
-             * Constructor.
-             */
-            HeTao();
-
-            /**
-             * Post constructor initialisation method.
-             */
-            int init();
-
-            /**
-             * Delay execution for the given amount of time.
-             *
-             * If the scheduler is running, this will deschedule the current fiber and perform
-             * a power efficient, concurrent sleep operation.
-             *
-             * If the scheduler is disabled or we're running in an interrupt context, this
-             * will revert to a busy wait.
-             *
-             * Alternatively: wait, wait_ms, wait_us can be used which will perform a blocking sleep
-             * operation.
-             *
-             * @param milliseconds the amount of time, in ms, to wait for. This number cannot be negative.
-             *
-             */
-            void sleep(uint32_t milliseconds);
-
-            /**
-             * A periodic callback invoked by the fiber scheduler idle thread.
-             * We use this for any low priority, background housekeeping.
-             */
-            virtual void idleCallback();
-
-            /**
-             * Determine the time since this MicroBit was last reset.
-             *
-             * @return The time since the last reset, in milliseconds.
-             *
-             * @note This will value overflow after 1.6 months.
-             */
-            //TODO: handle overflow case.
-            unsigned long systemTime();
-    };
-
+    /**
+     * Post constructor initialisation method.
+     */
+    int init();
 
     /**
      * Delay execution for the given amount of time.
@@ -151,13 +99,14 @@ namespace codal
      *
      * @param milliseconds the amount of time, in ms, to wait for. This number cannot be negative.
      *
-     * @return MICROBIT_OK on success, MICROBIT_INVALID_PARAMETER milliseconds is less than zero.
-     *
      */
-    inline void HeTao::sleep(uint32_t milliseconds)
-    {
-        fiber_sleep(milliseconds);
-    }
+    void sleep(uint32_t milliseconds);
+
+    /**
+     * A periodic callback invoked by the fiber scheduler idle thread.
+     * We use this for any low priority, background housekeeping.
+     */
+    virtual void idleCallback();
 
     /**
      * Determine the time since this MicroBit was last reset.
@@ -166,10 +115,42 @@ namespace codal
      *
      * @note This will value overflow after 1.6 months.
      */
-    inline unsigned long HeTao::systemTime()
-    {
-        return system_timer_current_time();
-    }
+    //TODO: handle overflow case.
+    unsigned long systemTime();
+};
+
+
+/**
+ * Delay execution for the given amount of time.
+ *
+ * If the scheduler is running, this will deschedule the current fiber and perform
+ * a power efficient, concurrent sleep operation.
+ *
+ * If the scheduler is disabled or we're running in an interrupt context, this
+ * will revert to a busy wait.
+ *
+ * Alternatively: wait, wait_ms, wait_us can be used which will perform a blocking sleep
+ * operation.
+ *
+ * @param milliseconds the amount of time, in ms, to wait for. This number cannot be negative.
+ *
+ * @return MICROBIT_OK on success, MICROBIT_INVALID_PARAMETER milliseconds is less than zero.
+ *
+ */
+inline void HeTao::sleep(uint32_t milliseconds) {
+    fiber_sleep(milliseconds);
+}
+
+/**
+ * Determine the time since this MicroBit was last reset.
+ *
+ * @return The time since the last reset, in milliseconds.
+ *
+ * @note This will value overflow after 1.6 months.
+ */
+inline unsigned long HeTao::systemTime() {
+    return system_timer_current_time();
+}
 }
 
 void hetao_dmesg_flush();
