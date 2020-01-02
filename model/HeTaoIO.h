@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include "CodalConfig.h"
 #include "ZPin.h"
-//#include "ZSPI.h"
+#include "ZSPI.h"
 
 //
 // Unique Pin number for each pin (synonymous with mbedos PinName)
@@ -83,7 +83,7 @@ public:
     ZPin scl;
     ZPin sda;
     // use ZSPI swap ZPin
-    ZPin led;
+    //    ZPin led;
     ZPin pwr_on;
     ZPin pwr_key;
     ZPin plugin;
