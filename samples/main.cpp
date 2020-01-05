@@ -4,10 +4,11 @@ HeTao bp;
 
 // LED SPI BUFFER
 uint8_t buf_bytes[] = {0x88, 0x8E, 0xE8, 0xEE};
-uint8_t txBuffer[8*3*4];
-uint32_t txSize = 8*3*4;
+uint8_t txBuffer[8*3*4 + 1];
+uint32_t txSize = 8*3*4 + 1;
 
 void show(int id, uint8_t red, uint8_t green, uint8_t blue, ZSPI &led) {
+
     if (id < 8) {
         uint8_t mask = 0x03;
         int index = id * 12;
@@ -27,7 +28,7 @@ void show(int id, uint8_t red, uint8_t green, uint8_t blue, ZSPI &led) {
         txBuffer[index + 11] = buf_bytes[blue & mask];
     }
 
-    led.transfer(txBuffer, txSize, rxBuffer, rxSize);
+    led.transfer(txBuffer, txSize, NULL, 0);
 }
 
 int main() {
@@ -35,7 +36,9 @@ int main() {
 
     int state = 0;
 
-    codal::Pin led_mosi(ID_LED, PB_8, PIN_CAPABILITY_DIGITAL);
+    memset(txBuffer, 0x88, txSize - 1);
+
+    codal::Pin led_mosi(ID_2812, PB_8, PIN_CAPABILITY_DIGITAL);
     codal::Pin *led_miso = NULL;
     codal::Pin *led_sclk = NULL;
     ZSPI led(led_mosi, *led_miso, *led_sclk);
@@ -44,13 +47,37 @@ int main() {
 
     uint64_t k = 0;
 
+    for(int j = 0; j < 8; j += 3)
+    {
+      show(j, 15, 0, 0, led);
+
+      fiber_sleep(1000);
+
+      show(j + 1, 0, 15, 0, led);
+
+      fiber_sleep(1000);
+
+      show(j + 2, 0, 0, 15, led);
+
+      fiber_sleep(1000);
+    }
+
+
+//  while (1) {
+//    bp.io.led.setDigitalValue(state);
+//    fiber_sleep(1000);
+//    state = !state;
+//  }
+
+
     while (1) {
         uint64_t m = k % 8;
         show(m, 0, 0, 0, led);
         k++;
         m = k % 8;
+        fiber_sleep(1000);
         show(m, 15, 15, 15, led);
-        fiber_sleep(10000);
+        fiber_sleep(1000);
         state = !state;
     }
 }
