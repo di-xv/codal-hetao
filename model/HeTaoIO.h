@@ -68,6 +68,7 @@ DEALINGS IN THE SOFTWARE.
 #define ID_BTN13         (DEVICE_ID_IO_P0 + 27)
 #define ID_BTN14         (DEVICE_ID_IO_P0 + 28)
 #define ID_BTN15         (DEVICE_ID_IO_P0 + 29)
+#define ID_2812         (DEVICE_ID_IO_P0 + 30)
 
 namespace codal {
 /**
@@ -82,8 +83,7 @@ public:
     ZPin lcd_rst;
     ZPin scl;
     ZPin sda;
-    // use ZSPI swap ZPin
-    //    ZPin led;
+    ZPin led;
     ZPin pwr_on;
     ZPin pwr_key;
     ZPin plugin;
