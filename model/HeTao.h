@@ -51,6 +51,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include "ZSingleWireSerial.h"
 #include "ZSPI.h"
+#include "ZSPI_LED.h"
 #include "STMLowLevelTimer.h"
 
 // Status flag values
