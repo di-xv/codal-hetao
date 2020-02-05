@@ -4,8 +4,8 @@ HeTao bp;
 
 // LED SPI BUFFER
 uint8_t buf_bytes[] = {0x88, 0x8E, 0xE8, 0xEE};
-uint8_t txBuffer[8*3*4 + 1];
-uint32_t txSize = 8*3*4 + 1;
+uint8_t txBuffer[8 * 3 * 4 + 1];
+uint32_t txSize = 8 * 3 * 4 + 1;
 
 void show(int id, uint8_t red, uint8_t green, uint8_t blue, ZSPI_LED &led) {
 
@@ -43,23 +43,20 @@ int main() {
     codal::Pin *led_sclk = NULL;
     ZSPI_LED led(led_mosi, *led_miso, *led_sclk);
 
-    led.setFrequency(3200000);
-
     uint64_t k = 0;
 
-    for(int j = 0; j < 8; j += 3)
-    {
-      show(j, 15, 0, 0, led);
+    for (int j = 0; j < 8; j += 3) {
+        show(j, 15, 0, 0, led);
 
-      fiber_sleep(1000);
+        fiber_sleep(1000);
 
-      show(j + 1, 0, 15, 0, led);
+        show(j + 1, 0, 15, 0, led);
 
-      fiber_sleep(1000);
+        fiber_sleep(1000);
 
-      show(j + 2, 0, 0, 15, led);
+        show(j + 2, 0, 0, 15, led);
 
-      fiber_sleep(1000);
+        fiber_sleep(1000);
     }
 
 
