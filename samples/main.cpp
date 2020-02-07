@@ -12,14 +12,13 @@ int main() {
 
     uint64_t k = 0;
 
-    led.show(0, 15, 15, 0);
-
+    led.show(0, 15, 15, 0, false);
     fiber_sleep(2000);
 
     for (int j = 0; j < 8; j += 3) {
         led.show(j, 15, 0, 0);
         led.show(j + 1, 0, 15, 0);
-        led.show(j + 2, 0, 0, 15);
+        led.show(j + 2, 0, 0, 15, false);
         fiber_sleep(5000);
     }
 
@@ -35,7 +34,7 @@ int main() {
         led.show(m, 0, 0, 0);
         k++;
         m = k % 8;
-        led.show(m, 15, 15, 15);
+        led.show(m, 15, 15, 15, false);
         fiber_sleep(1000);
     }
 }
