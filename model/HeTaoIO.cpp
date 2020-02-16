@@ -77,7 +77,6 @@ HeTaoIO::HeTaoIO() :
         spi_led_pin(ID_2812, PB_8, PIN_CAPABILITY_DIGITAL),
 
         // for jacdac
-        snd(ID_PIN_P31, PA_8, PIN_CAPABILITY_AD), // gray - SERVO
         tx(ID_PIN_P32, PA_9, PIN_CAPABILITY_AD) // purple - TX
 {
 

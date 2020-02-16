@@ -116,7 +116,6 @@ public:
     ZPin *NULL_CODAL_PIN = nullptr;
 
     // for jacdac
-    ZPin snd;
     ZPin tx;
 
     /**

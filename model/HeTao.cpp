@@ -46,9 +46,13 @@ HeTao::HeTao() :
         buttonDown(io.buttonDown, DEVICE_ID_BUTTON_DOWN, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
         buttonLeft(io.buttonLeft, DEVICE_ID_BUTTON_LEFT, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
         buttonRight(io.buttonRight, DEVICE_ID_BUTTON_RIGHT, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
+
+        // for jacdac
         sws(io.tx),
         bus(sws, tim2),
         jacdac(bus),
+
+        // for spi led
         spi_led(io.spi_led_pin, *(io.NULL_CODAL_PIN), *(io.NULL_CODAL_PIN)) {
     // Clear our status
     status = 0;
