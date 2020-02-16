@@ -51,8 +51,9 @@ DEALINGS IN THE SOFTWARE.
 
 #include "ZSingleWireSerial.h"
 #include "ZSPI.h"
-#include "ZSPI_LED.h"
 #include "STMLowLevelTimer.h"
+
+#include "JACDAC.h"
 
 // Status flag values
 #define DEVICE_INITIALIZED                    0x01
@@ -75,6 +76,15 @@ public:
     Button buttonDown;
     Button buttonLeft;
     Button buttonRight;
+
+    // for JACDAC
+    STMLowLevelTimer tim2;
+    ZSingleWireSerial sws;
+    JDPhysicalLayer bus;
+    JACDAC jacdac;
+
+    // for spi LED
+    ZSPI_LED spi_led;
 
     /**
      * Constructor.

@@ -37,6 +37,7 @@ static HeTao *device_instance = NULL;
   * that represent various device drivers used to control aspects of the micro:bit.
   */
 HeTao::HeTao() :
+        tim2(TIM2, TIM2_IRQn),
         tim4(TIM4, TIM4_IRQn),
         timer(tim4),
         messageBus(),
@@ -44,7 +45,11 @@ HeTao::HeTao() :
         buttonUp(io.buttonUp, DEVICE_ID_BUTTON_UP, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
         buttonDown(io.buttonDown, DEVICE_ID_BUTTON_DOWN, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
         buttonLeft(io.buttonLeft, DEVICE_ID_BUTTON_LEFT, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
-        buttonRight(io.buttonRight, DEVICE_ID_BUTTON_RIGHT, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up) {
+        buttonRight(io.buttonRight, DEVICE_ID_BUTTON_RIGHT, DEVICE_BUTTON_ALL_EVENTS, ACTIVE_LOW, PullMode::Up),
+        sws(io.tx),
+        bus(sws, tim2),
+        jacdac(bus),
+        spi_led(io.spi_led_pin, *(io.NULL_CODAL_PIN), *(io.NULL_CODAL_PIN)) {
     // Clear our status
     status = 0;
 

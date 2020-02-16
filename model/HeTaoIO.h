@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include "CodalConfig.h"
 #include "ZPin.h"
-#include "ZSPI.h"
+#include "ZSPI_LED.h"
 
 //
 // Unique Pin number for each pin (synonymous with mbedos PinName)
@@ -69,6 +69,8 @@ DEALINGS IN THE SOFTWARE.
 #define ID_BTN14         (DEVICE_ID_IO_P0 + 28)
 #define ID_BTN15         (DEVICE_ID_IO_P0 + 29)
 #define ID_2812         (DEVICE_ID_IO_P0 + 30)
+#define ID_PIN_P31           (DEVICE_ID_IO_P0 + 31)
+#define ID_PIN_P32           (DEVICE_ID_IO_P0 + 32)
 
 namespace codal {
 /**
@@ -108,6 +110,14 @@ public:
     ZPin buttonDown;
     ZPin buttonLeft;
     ZPin buttonRight;
+
+    // for spi led
+    ZPin spi_led_pin;
+    ZPin *NULL_CODAL_PIN = nullptr;
+
+    // for jacdac
+    ZPin snd;
+    ZPin tx;
 
     /**
      * Constructor.
