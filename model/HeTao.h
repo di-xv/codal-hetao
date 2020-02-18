@@ -84,7 +84,7 @@ public:
     JACDAC jacdac;
 
     // for spi LED
-    ZSPI_LED spi_led;
+//    ZSPI_LED spi_led;
 
     /**
      * Constructor.

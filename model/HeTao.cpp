@@ -50,10 +50,11 @@ HeTao::HeTao() :
         // for jacdac
         sws(io.tx),
         bus(sws, tim2),
-        jacdac(bus),
+        jacdac(bus)
 
         // for spi led
-        spi_led(io.spi_led_pin, *(io.NULL_CODAL_PIN), *(io.NULL_CODAL_PIN)) {
+//        spi_led(io.spi_led_pin, *(io.NULL_CODAL_PIN), *(io.NULL_CODAL_PIN))
+        {
     // Clear our status
     status = 0;
 

@@ -112,8 +112,8 @@ public:
     ZPin buttonRight;
 
     // for spi led
-    ZPin spi_led_pin;
-    ZPin *NULL_CODAL_PIN = nullptr;
+//    ZPin spi_led_pin;
+//    ZPin *NULL_CODAL_PIN = nullptr;
 
     // for jacdac
     ZPin tx;
