@@ -45,7 +45,7 @@
         {
             "name":"codal-stm32",
             "url":"https://github.com/di-xv/codal-stm32",
-            "branch":"master",
+            "branch":"merge_master",
             "type":"git"
         }
     ]
