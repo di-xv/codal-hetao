@@ -38,7 +38,7 @@
             "url": "https://github.com/lancaster-university/codal-core"
         }, 
         {
-            "branch": "de72264267469db0a934ff49116404e529498f28",
+            "branch": "82c5f6c7d53124eba0a44f9e943ed0743a5b53fc",
             "name": "codal-stm32", 
             "type": "git", 
             "url": "https://github.com/di-xv/codal-stm32"
