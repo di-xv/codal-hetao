@@ -27,7 +27,6 @@ DEALINGS IN THE SOFTWARE.
 
 #include "CodalConfig.h"
 #include "ZPin.h"
-#include "ZSPI_LED.h"
 
 //
 // Unique Pin number for each pin (synonymous with mbedos PinName)
