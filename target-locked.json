@@ -32,7 +32,7 @@
     "generate_hex": true, 
     "libraries": [
         {
-            "branch": "c48a0007dfe32e0da42a9d3c440ffcf48ff2377d",
+            "branch": "7e459b8d7aebeef5591e636f5b5ba6d1053562f6",
             "name": "codal-core", 
             "type": "git", 
             "url": "https://github.com/lancaster-university/codal-core"
