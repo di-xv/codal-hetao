@@ -26,22 +26,22 @@
     }, 
     "cpp_flags": "-std=c++11 -fwrapv -fno-rtti -fno-threadsafe-statics -fno-exceptions -fno-unwind-tables -Wl,--gc-sections -Wl,--sort-common -Wl,--sort-section=alignment -Wno-array-bounds", 
     "cpu_opts": "-mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -mfpu=fpv4-sp-d16", 
-    "definitions": "-DSTM32F4 -DSTM32F412Rx -include codal-hetao/inc/localconf.h",
+    "definitions": "-DSTM32F4 -DSTM32F401xE -include codal-hetao/inc/localconf.h",
     "device": "STM32", 
     "generate_bin": true, 
     "generate_hex": true, 
     "libraries": [
         {
-            "branch": "c48a0007dfe32e0da42a9d3c440ffcf48ff2377d",
+            "branch": "7e459b8d7aebeef5591e636f5b5ba6d1053562f6",
             "name": "codal-core", 
             "type": "git", 
             "url": "https://github.com/lancaster-university/codal-core"
         }, 
         {
-            "branch": "de72264267469db0a934ff49116404e529498f28",
+            "branch": "0b3509c87b590da985ad1a5c327843ca0366665d",
             "name": "codal-stm32", 
             "type": "git", 
-            "url": "https://github.com/di-xv/codal-stm32"
+            "url": "https://github.com/lancaster-university/codal-stm32"
         }
     ], 
     "linker_flags": "-Wl,--no-wchar-size-warning -Wl,--gc-sections -mcpu=cortex-m4 -mthumb", 
