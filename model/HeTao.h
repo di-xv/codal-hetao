@@ -83,9 +83,6 @@ public:
     JDPhysicalLayer bus;
     JACDAC jacdac;
 
-    // for spi LED
-//    ZSPI_LED spi_led;
-
     /**
      * Constructor.
      */

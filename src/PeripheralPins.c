@@ -192,8 +192,7 @@ MBED_WEAK const PinMap PinMap_PWM[] = {
 //*** SERIAL ***
 
 MBED_WEAK const PinMap PinMap_UART_TX[] = {
-        {PA_2,  UART_2, STM_PIN_DATA(STM_MODE_AF_PP, GPIO_PULLUP,
-                                     GPIO_AF7_USART2)}, // Connected to STDIO_UART_TX (default)
+        {PA_2,  UART_2, STM_PIN_DATA(STM_MODE_AF_PP, GPIO_PULLUP, GPIO_AF7_USART2)}, // Connected to STDIO_UART_TX (default)
         {PA_9,  UART_1, STM_PIN_DATA(STM_MODE_AF_PP, GPIO_PULLUP, GPIO_AF7_USART1)},
         {PA_11, UART_6, STM_PIN_DATA(STM_MODE_AF_PP, GPIO_PULLUP, GPIO_AF8_USART6)},
         {PB_6,  UART_1, STM_PIN_DATA(STM_MODE_AF_PP, GPIO_PULLUP, GPIO_AF7_USART1)},
@@ -202,8 +201,7 @@ MBED_WEAK const PinMap PinMap_UART_TX[] = {
 };
 
 MBED_WEAK const PinMap PinMap_UART_RX[] = {
-        {PA_3,  UART_2, STM_PIN_DATA(STM_MODE_AF_PP, GPIO_PULLUP,
-                                     GPIO_AF7_USART2)}, // Connected to STDIO_UART_RX (default)
+        {PA_3,  UART_2, STM_PIN_DATA(STM_MODE_AF_PP, GPIO_PULLUP, GPIO_AF7_USART2)}, // Connected to STDIO_UART_RX (default)
         {PA_10, UART_1, STM_PIN_DATA(STM_MODE_AF_PP, GPIO_PULLUP, GPIO_AF7_USART1)},
         {PA_12, UART_6, STM_PIN_DATA(STM_MODE_AF_PP, GPIO_PULLUP, GPIO_AF8_USART6)},
         {PB_7,  UART_1, STM_PIN_DATA(STM_MODE_AF_PP, GPIO_PULLUP, GPIO_AF7_USART1)},
