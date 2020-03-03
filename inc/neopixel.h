@@ -20,20 +20,19 @@
 #define NEOPIXEL_SEND_ONE GPIOx->BSRR = PIN; \
         startTime = DWT->CYCCNT; \
         while((DWT->CYCCNT - startTime) < TICK1); \
-        GPIOx->BSRR = (uint32_t)PIN << 16U; \
-        startTime = DWT->CYCCNT; \
-        while((DWT->CYCCNT - startTime) < TICK0); \
+		GPIOx->BSRR = (uint32_t)PIN << 16U; \
+		startTime = DWT->CYCCNT; \
+		while((DWT->CYCCNT - startTime) < TICK0); \
 
 #define NEOPIXEL_SEND_ZERO GPIOx->BSRR = PIN; \
         startTime = DWT->CYCCNT; \
         while((DWT->CYCCNT - startTime) < TICK0); \
-        GPIOx->BSRR = (uint32_t)PIN << 16U;  \
+		GPIOx->BSRR = (uint32_t)PIN << 16U;  \
         startTime = DWT->CYCCNT; \
-        while((DWT->CYCCNT - startTime) < TICK1); \
+		while((DWT->CYCCNT - startTime) < TICK1); \
 
-
-static inline void neopixel_send_buffer(ZPin &pin, const uint8_t *ptr, int numBytes) {
-    GPIO_TypeDef *GPIOx;
+static inline void neopixel_send_buffer(ZPin &pin, const uint8_t *ptr, int numBytes){
+    GPIO_TypeDef* GPIOx;
     uint32_t PIN;
     uint32_t name = pin.name;
     GPIOx = GPIO_PORT();
@@ -47,30 +46,31 @@ static inline void neopixel_send_buffer(ZPin &pin, const uint8_t *ptr, int numBy
     }
 
     __disable_irq();
-    for (int i = 0; i < numBytes; i++) {
-        if ((ptr[i] & 128) > 0) { NEOPIXEL_SEND_ONE }
-        else { NEOPIXEL_SEND_ZERO }
+    for (int i = 0; i < numBytes; i++)
+    {
+        if ((ptr[i] & 128) > 0)	{NEOPIXEL_SEND_ONE}
+        else	{NEOPIXEL_SEND_ZERO}
 
-        if ((ptr[i] & 64) > 0) { NEOPIXEL_SEND_ONE }
-        else { NEOPIXEL_SEND_ZERO }
+        if ((ptr[i] & 64) > 0)	{NEOPIXEL_SEND_ONE}
+        else	{NEOPIXEL_SEND_ZERO}
 
-        if ((ptr[i] & 32) > 0) { NEOPIXEL_SEND_ONE }
-        else { NEOPIXEL_SEND_ZERO }
+        if ((ptr[i] & 32) > 0)	{NEOPIXEL_SEND_ONE}
+        else	{NEOPIXEL_SEND_ZERO}
 
-        if ((ptr[i] & 16) > 0) { NEOPIXEL_SEND_ONE }
-        else { NEOPIXEL_SEND_ZERO }
+        if ((ptr[i] & 16) > 0)	{NEOPIXEL_SEND_ONE}
+        else	{NEOPIXEL_SEND_ZERO}
 
-        if ((ptr[i] & 8) > 0) { NEOPIXEL_SEND_ONE }
-        else { NEOPIXEL_SEND_ZERO }
+        if ((ptr[i] & 8) > 0)	{NEOPIXEL_SEND_ONE}
+        else	{NEOPIXEL_SEND_ZERO}
 
-        if ((ptr[i] & 4) > 0) { NEOPIXEL_SEND_ONE }
-        else { NEOPIXEL_SEND_ZERO }
+        if ((ptr[i] & 4) > 0)	{NEOPIXEL_SEND_ONE}
+        else	{NEOPIXEL_SEND_ZERO}
 
-        if ((ptr[i] & 2) > 0) { NEOPIXEL_SEND_ONE }
-        else { NEOPIXEL_SEND_ZERO }
+        if ((ptr[i] & 2) > 0)	{NEOPIXEL_SEND_ONE}
+        else	{NEOPIXEL_SEND_ZERO}
 
-        if ((ptr[i] & 1) > 0) { NEOPIXEL_SEND_ONE }
-        else { NEOPIXEL_SEND_ZERO }
+        if ((ptr[i] & 1) > 0)	{NEOPIXEL_SEND_ONE}
+        else	{NEOPIXEL_SEND_ZERO}
     }
     __enable_irq();
 }

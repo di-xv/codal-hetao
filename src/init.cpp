@@ -37,9 +37,9 @@ void init_clocks() {
     CODAL_ASSERT(pllm * 1000000 == HSE_VALUE, DEVICE_HARDWARE_CONFIGURATION_ERROR);
 
     RCC_OscInitStruct.PLL.PLLM = pllm;
-    RCC_OscInitStruct.PLL.PLLN = 192;
-    RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-    RCC_OscInitStruct.PLL.PLLQ = 4;
+    RCC_OscInitStruct.PLL.PLLN = 336;
+    RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
+    RCC_OscInitStruct.PLL.PLLQ = 7;
 
     /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2
        clocks dividers */
