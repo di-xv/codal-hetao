@@ -6,12 +6,14 @@
 void target_init();
 
 extern "C" __attribute__((weak)) void
-apply_clock_init(RCC_OscInitTypeDef *oscInit, RCC_ClkInitTypeDef *clkConfig, uint32_t flashLatency) {
+apply_clock_init(RCC_OscInitTypeDef *oscInit, RCC_ClkInitTypeDef *clkConfig, uint32_t flashLatency)
+{
     HAL_RCC_OscConfig(oscInit);
     HAL_RCC_ClockConfig(clkConfig, flashLatency);
 }
 
-void init_clocks() {
+void init_clocks()
+{
 
     RCC_ClkInitTypeDef RCC_ClkInitStruct;
     RCC_OscInitTypeDef RCC_OscInitStruct;
@@ -44,7 +46,7 @@ void init_clocks() {
     /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2
        clocks dividers */
     RCC_ClkInitStruct.ClockType =
-            (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
+        (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
     RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -72,13 +74,15 @@ void init_clocks() {
     __HAL_RCC_USB_OTG_FS_CLK_DISABLE();
 }
 
-extern "C" void cpu_init() {
+extern "C" void cpu_init()
+{
     SystemCoreClockUpdate();
     target_init();
     init_clocks();
 }
 
-void target_deepsleep() {
+void target_deepsleep()
+{
     HAL_PWREx_EnableFlashPowerDown();
     HAL_PWREx_EnableLowRegulatorLowVoltage();
     HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);
