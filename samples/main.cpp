@@ -7,12 +7,34 @@ JDMessageBusService serialBus;
 
 #define APP_ID 9008
 
+#ifdef STM32F412Rx
+#include "ZSPI_LED.h"
+codal::Pin led_mosi(ID_2812, PB_8, PIN_CAPABILITY_DIGITAL);
+codal::Pin *led_miso = NULL;
+codal::Pin *led_sclk = NULL;
+ZSPI_LED led(led_mosi, *led_miso, *led_sclk);
+#else
+class Dummy_LED {
+public:
+    Dummy_LED(codal::Pin &mosi, codal::Pin &miso, codal::Pin &sclk) {
+
+    }
+    int show(int id, uint8_t red, uint8_t green, uint8_t blue) {
+
+    }
+};
+codal::Pin led_mosi(ID_2812, PB_8, PIN_CAPABILITY_DIGITAL);
+codal::Pin *led_miso = NULL;
+codal::Pin *led_sclk = NULL;
+Dummy_LED led(led_mosi, *led_miso, *led_sclk);
+#endif
+
 void message_bus_evt(Event e) {
     if (e.value == DEVICE_BUTTON_EVT_DOWN) {
-        ht.spi_led.show(0, 15, 0, 0);
+        led.show(0, 15, 0, 0);
     }
     if (e.value == DEVICE_BUTTON_EVT_UP) {
-        ht.spi_led.show(0, 0, 15, 0);
+        led.show(0, 0, 15, 0);
     }
 }
 
@@ -53,20 +75,20 @@ int main() {
 
     uint64_t k = 0;
 
-    ht.spi_led.show(0, 15, 15, 0);
+    led.show(0, 15, 15, 0);
     fiber_sleep(2000);
 
     for (int j = 0; j < 8; j += 3) {
-        ht.spi_led.show(j, 15, 0, 0);
-        ht.spi_led.show(j + 1, 0, 15, 0);
-        ht.spi_led.show(j + 2, 0, 0, 15);
+        led.show(j, 15, 0, 0);
+        led.show(j + 1, 0, 15, 0);
+        led.show(j + 2, 0, 0, 15);
         fiber_sleep(1000);
     }
 
     for (int j = 0; j < 8; j += 3) {
-        ht.spi_led.show(j, 0, 0, 0);
-        ht.spi_led.show(j + 1, 0, 0, 0);
-        ht.spi_led.show(j + 2, 0, 0, 0);
+        led.show(j, 0, 0, 0);
+        led.show(j + 1, 0, 0, 0);
+        led.show(j + 2, 0, 0, 0);
         fiber_sleep(1000);
     }
 
@@ -79,17 +101,17 @@ int main() {
     ht.jacdac.start();
 
     while (1) {
-        ht.spi_led.show(7, 0, 0, 15 * state);
+        led.show(7, 0, 0, 15 * state);
         fiber_sleep(500);
         state = !state;
     }
 
     while (1) {
         uint64_t m = k % 8;
-        ht.spi_led.show(m, 0, 0, 0);
+        led.show(m, 0, 0, 0);
         k++;
         m = k % 8;
-        ht.spi_led.show(m, 15, 15, 15);
+        led.show(m, 15, 15, 15);
         fiber_sleep(1000);
     }
 }

@@ -27,7 +27,6 @@ DEALINGS IN THE SOFTWARE.
 
 #include "CodalConfig.h"
 #include "ZPin.h"
-#include "ZSPI_LED.h"
 
 //
 // Unique Pin number for each pin (synonymous with mbedos PinName)
@@ -110,10 +109,6 @@ public:
     ZPin buttonDown;
     ZPin buttonLeft;
     ZPin buttonRight;
-
-    // for spi led
-//    ZPin spi_led_pin;
-//    ZPin *NULL_CODAL_PIN = nullptr;
 
     // for jacdac
     ZPin tx;
