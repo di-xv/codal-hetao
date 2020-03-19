@@ -42,8 +42,8 @@ using namespace codal;
   */
 HeTaoIO::HeTaoIO() :
         mute(ID_PIN_MUTE, PA_0, PIN_CAPABILITY_DIGITAL),
-        ttl_tx(ID_TTL_TX, PA_2, PIN_CAPABILITY_AD),
-        ttl_rx(ID_TTL_RX, PA_3, PIN_CAPABILITY_AD),
+        ttl_tx(ID_TTL_TX, PA_9, PIN_CAPABILITY_AD),
+        ttl_rx(ID_TTL_RX, PA_10, PIN_CAPABILITY_AD),
         lcd_rst(ID_LCD_RST, PB_1, PIN_CAPABILITY_DIGITAL),
         scl(ID_SCL, PB_6, PIN_CAPABILITY_DIGITAL),
         sda(ID_SDA, PB_7, PIN_CAPABILITY_DIGITAL),

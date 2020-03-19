@@ -3,7 +3,7 @@
     "processor":"STM32F4",
     "architecture":"CORTEX_M4",
     "toolchain":"ARM_GCC",
-    "post_process":"python ./utils/uf2conv.py  -b 0x08010000 -o <OUTPUT_HEX_DESTINATION>/<OUTPUT_HEX_NAME>.uf2 -c <OUTPUT_BIN_LOCATION>",
+    "post_process":"py -2 ./utils/uf2conv.py  -b 0x08010000 -o <OUTPUT_HEX_DESTINATION>/<OUTPUT_HEX_NAME>.uf2 -c <OUTPUT_BIN_LOCATION>",
     "generate_bin":true,
     "generate_hex":true,
     "config":{
@@ -27,7 +27,7 @@
         "CODAL_TIMESTAMP":"uint64_t",
         "PROCESSOR_WORD_TYPE":"uint32_t"
     },
-    "definitions":"-DSTM32F4 -DSTM32F412Rx -include codal-hetao/inc/localconf.h",
+    "definitions":"-DSTM32F4 -DSTM32F401xE -include codal-hetao/inc/localconf.h",
     "cmake_definitions":{
     },
     "cpu_opts":"-mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -mfpu=fpv4-sp-d16",
